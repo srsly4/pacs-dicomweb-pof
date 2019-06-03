@@ -1,0 +1,16 @@
+version: "3"
+services:
+  orthanc:
+    image: osimis/orthanc
+    restart: unless-stopped
+    ports: 
+      - "104:4242"
+      - "80:8042"
+    volumes: 
+      - "/var/lib/orthanc/db_docker:/var/lib/orthanc/db:Z"
+    environment:
+      NAME: "My Orthanc"
+      DICOM_AET: "MY_ORTHANC"
+      DW_ENABLED: "true"
+      WVB_ENABLED: "true"
+      WVB_ANNOTATIONS_STORAGE_ENABLED: "true"
