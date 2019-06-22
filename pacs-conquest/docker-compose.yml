@@ -1,0 +1,27 @@
+version: "3"
+services:
+  db:
+    image: postgres:latest
+    restart: unless-stopped
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: conquest
+    volumes:
+      - "/var/lib/pacs-db/db_docker:/var/lib/postgresql/data"
+    networks:
+      - pacs_network
+  conquest:
+    build:
+      context: conquest
+      args:
+        ORTHANC_HOST: orthanc
+        ORTHANC_PORT: 4242
+    restart: unless-stopped
+    depends_on:
+      - "db"
+    networks:
+      - pacs_network
+    ports:
+      - "5678:5678"
+networks:
+  pacs_network:

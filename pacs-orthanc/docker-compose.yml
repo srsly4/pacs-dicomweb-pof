@@ -1,20 +1,12 @@
 version: "3"
 services:
-  db:
-    image: postgres:latest
-    restart: unless-stopped
-    environment:
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: conquest
-    volumes:
-      - "/var/lib/pacs-db/db_docker:/var/lib/postgresql/data"
-    networks:
-      - pacs_network
   orthanc:
     image: osimis/orthanc
     restart: unless-stopped
     networks:
       - pacs_network
+    ports: 
+      - "104:4242"
     volumes: 
       - "/var/lib/orthanc/db_docker:/var/lib/orthanc/db:Z"
     environment:
@@ -25,21 +17,10 @@ services:
       WVB_ANNOTATIONS_STORAGE_ENABLED: "true"
       DICOM_MODALITIES: |
         {
-           "conquest": ["CONQUESTSRV1", "conquest", 5678]
+           "conquest": ["CONQUESTSRV1", "conquest_host_or_ip", 5678]
         }
-  conquest:
-    build:
-      context: pacs-conquest/conquest
-      args:
-        ORTHANC_HOST: orthanc
-        ORTHANC_PORT: 4242
-    restart: unless-stopped
-    depends_on:
-      - "db"
-    networks:
-      - pacs_network
   nginx:
-    build: pacs-orthanc/nginx
+    build: nginx
     depends_on:
       - "orthanc"
     networks:
