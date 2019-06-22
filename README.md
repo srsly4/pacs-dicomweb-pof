@@ -8,4 +8,10 @@ Start with:
 docker-compose up
 ```
 
+If the database for conquest is freshly created you have to execute:
+
+```bash
+docker-compose exec conquest ./dgate -v -r
+``` 
+
 The web apllication will be hosted on localhost.
