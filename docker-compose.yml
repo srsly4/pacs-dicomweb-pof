@@ -27,6 +27,29 @@ services:
         {
            "conquest": ["CONQUESTSRV1", "conquest", 5678]
         }
+      AUTHZ_WEBSERVICE: http://orthanc-auth-service:8000/
+      AUTHZ_TOKEN_HTTP_HEADERS: |
+        ["auth-header"]
+      AUTHZ_UNCHECKED_RESOURCES: |
+        [
+                "/osimis-viewer/config.js",
+                "/system"
+        ]
+      AUTHZ_UNCHECKED_FOLDERS: |
+        [
+              "/plugins",
+              "/app/",
+              "/wsi/app/",
+              "/osimis-viewer/app/",
+              "/osimis-viewer/languages/"
+        ]
+      AUTHZ_UNCHECKED_LEVELS: |
+        ["study", "series", "instances", "system"]
+  orthanc-auth-service:
+    build: pacs-orthanc/node-auth-server
+    restart: unless-stopped
+    networks:
+      - pacs_network
   conquest:
     build:
       context: pacs-conquest/conquest
