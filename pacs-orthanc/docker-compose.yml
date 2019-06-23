@@ -17,7 +17,7 @@ services:
       WVB_ANNOTATIONS_STORAGE_ENABLED: "true"
       DICOM_MODALITIES: |
         {
-           "conquest": ["CONQUESTSRV1", "conquest_host_or_ip", 5678]
+           "conquest": ["CONQUESTSRV1", "10.0.0.5", 5678]
         }
       AUTHZ_WEBSERVICE: http://orthanc-auth-service:8000/
       AUTHZ_TOKEN_HTTP_HEADERS: |
