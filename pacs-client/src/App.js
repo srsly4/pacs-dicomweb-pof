@@ -35,6 +35,7 @@ class App extends React.Component {
     this.onPatientSelected = this.onPatientSelected.bind(this);
     this.onStudySelected = this.onStudySelected.bind(this);
     this.onSeriesSelected = this.onSeriesSelected.bind(this);
+    this.onSeriesClosed = this.onSeriesSelected.bind(this, null);
   }
 
   onPatientSelected(patient) {
@@ -97,7 +98,7 @@ class App extends React.Component {
             <Typography variant="h6">
               Orthanc Simple Client
             </Typography>
-            <Button color="inherit">Login</Button>
+            { this.state.selectedSeries && <Button color="inherit" onClick={this.onSeriesClosed}>Close series</Button> }
           </Toolbar>
         </AppBar>
         { this.state.selectedSeries ? this.renderSeriesViewer() : this.renderBrowser() }
