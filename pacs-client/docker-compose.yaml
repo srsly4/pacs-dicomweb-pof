@@ -1,0 +1,9 @@
+version: '3.7'
+
+services:
+  react-client:
+    container_name: react-client
+    build:
+      context: .
+    ports:
+      - '3000:80'
