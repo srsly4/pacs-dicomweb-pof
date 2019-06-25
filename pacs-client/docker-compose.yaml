@@ -1,4 +1,4 @@
-version: '3.7'
+version: '3.3'
 
 services:
   react-client:
@@ -7,3 +7,7 @@ services:
       context: .
     ports:
       - '3000:80'
+    networks:
+      - pacs-network
+networks:
+  pacs-network:

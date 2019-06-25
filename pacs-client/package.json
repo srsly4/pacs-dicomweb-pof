@@ -2,6 +2,7 @@
   "name": "pacs-client",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://40.115.0.32/client",
   "dependencies": {
     "@material-ui/core": "^4.0.0-rc.0",
     "es6-promise": "^4.2.8",
