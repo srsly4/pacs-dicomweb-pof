@@ -1,5 +1,5 @@
 export default {
-  apiUrl: 'https://40.115.0.32/admin',
+  apiUrl: process.env.REACT_APP_API_URL,
   authHeader: {
     Authorization: 'Basic '+window.btoa('admin:admin'),
   }

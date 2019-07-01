@@ -1,5 +1,8 @@
 # build environment
 FROM node:12.2.0-alpine as build
+
+ARG REACT_APP_API_URL
+
 WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 COPY package.json /app/package.json

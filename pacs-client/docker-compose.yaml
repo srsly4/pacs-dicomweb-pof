@@ -5,6 +5,8 @@ services:
     container_name: react-client
     build:
       context: .
+      args:
+        REACT_APP_API_URL: 'https://40.115.0.32/admin'
     ports:
       - '3000:80'
     networks:
